@@ -29,8 +29,10 @@ parking-revenue-ai/
 ├── main.py             # FastAPI entry point
 ├── requirements.txt    # Project dependencies
 └── README.md           # Project documentation
+```
 
 ## 📊 Feature Engineering Logic
+
 The model's accuracy (approx. 92% MAPE) is driven by specialized time-series features:
 
 Lag Features (rev_lag_1, rev_lag_7): Captures daily momentum and weekly seasonality.
@@ -40,7 +42,6 @@ Rolling Mean (rev_rolling_7): Smooths out random noise to identify the underlyin
 Temporal Indicators: Day of week, Month, and Weekend flags to capture human behavior patterns.
 
 ## 🚀 Getting Started
-
 1. Setup Environment
 git clone [https://github.com/your-username/parking-revenue-ai.git](https://github.com/your-username/parking-revenue-ai.git)
 cd parking-revenue-ai
