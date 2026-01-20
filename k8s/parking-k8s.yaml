@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parking-revenue-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parking-ai
+  template:
+    metadata:
+      labels:
+        app: parking-ai
+    spec:
+      securityContext:
+        runAsUser: 5678
+      containers:
+      - name: api-container
+        image: parkingrevenueai:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /docs
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 5

@@ -17,6 +17,13 @@ if os.path.exists(MODEL_PATH):
 else:
     model = None
 
+@app.get("/health")
+async def health_check():
+    # เช็คว่า Model โหลดสำเร็จหรือไม่
+    if model is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+    return {"status": "healthy", "model_loaded": True}
+
 class PredictionInput(BaseModel):
     park_name: str = Field(..., example="Bangkok Noi")
     day_of_week: int = Field(..., ge=0, le=6)
